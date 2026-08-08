@@ -49,7 +49,7 @@ def _l2_rows(A: np.ndarray) -> np.ndarray:
 # Algorithm 1 — Training (lines 1–7)
 # ----------------------------------------------------------------------
 
-def gcca_train(
+def gw_cca_train(
     X_train: np.ndarray,
     A_train: sp.spmatrix,
     d: int,
@@ -127,7 +127,7 @@ def gcca_train(
 # Algorithm 1 — Inductive Inference (lines 8–10)
 # ----------------------------------------------------------------------
 
-def gcca_embed(
+def gw_cca_embed(
     X_full: np.ndarray,
     A: sp.spmatrix,
     W: np.ndarray,
@@ -148,7 +148,7 @@ def gcca_embed(
     concatenation — an implementation choice not part of Algorithm 1.
 
     mu1/mu2: optional training-subgraph column means (as returned by
-    gcca_train(..., center=True)). When provided, they are subtracted from
+    gw_cca_train(..., center=True)). When provided, they are subtracted from
     X' and X_2' respectively before applying the projections, so inductive
     inference uses *training* statistics — no test-node features enter mu.
     """

@@ -12,8 +12,8 @@ removed.
 ## Contents
 
 ```
-gcca.py            Algorithm 1: gcca_train (Cholesky + truncated SVD)
-                                gcca_embed (inductive inference with L2 rows)
+gw_cca.py            Algorithm 1: gw_cca_train (Cholesky + truncated SVD)
+                                gw_cca_embed (inductive inference with L2 rows)
 data.py            Strict-inductive dataset loaders + train/test edge splits
 probe.py           Downstream evaluation (torch LBFGS LR probe + link-pred LR)
 run.py             CLI entry: python run.py --dataset <name>
@@ -34,7 +34,7 @@ in `data.py` if you prefer.
 
 Each command below reproduces one column of the paper's node-classification and
 link-prediction tables. All use `K = 3`; `d` and `λ` default to the paper's
-§5.3 values (see `DEFAULT_D` / `DEFAULT_LAM` in `gcca.py`).
+§5.3 values (see `DEFAULT_D` / `DEFAULT_LAM` in `gw_cca.py`).
 
 ```bash
 python run.py --dataset ogbn-arxiv       # d=120, λ=0

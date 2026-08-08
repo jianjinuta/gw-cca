@@ -13,7 +13,7 @@ import argparse
 import time
 
 from data import DATASETS
-from gcca import DEFAULT_D, DEFAULT_LAM, gcca_embed, gcca_train
+from gw_cca import DEFAULT_D, DEFAULT_LAM, gw_cca_embed, gw_cca_train
 from probe import eval_link_pred, eval_node_cls
 
 
@@ -41,15 +41,15 @@ def main():
 
     print(f"Training {method_name} (Algorithm 1 training phase)...", flush=True)
     t0 = time.time()
-    W, H, mu1, mu2 = gcca_train(ds["X_train"], ds["A_train"], d=d, K=args.K,
+    W, H, mu1, mu2 = gw_cca_train(ds["X_train"], ds["A_train"], d=d, K=args.K,
                                 lam=lam, swap=swap, center=center)
     train_s = time.time() - t0
     print(f"  train_s = {train_s:.2f}")
 
     print("Inductive inference: full-graph embedding + link-prediction-graph embedding...", flush=True)
-    Z_nc = gcca_embed(ds["X_full"], ds["A_full"], W, H,
+    Z_nc = gw_cca_embed(ds["X_full"], ds["A_full"], W, H,
                       K=args.K, swap=swap, mu1=mu1, mu2=mu2)
-    Z_lp = gcca_embed(ds["X_full"], ds["A_lp"], W, H,
+    Z_lp = gw_cca_embed(ds["X_full"], ds["A_lp"], W, H,
                       K=args.K, swap=swap, mu1=mu1, mu2=mu2)
 
     print("Evaluating...", flush=True)
