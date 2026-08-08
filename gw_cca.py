@@ -180,12 +180,12 @@ DEFAULT_D = {
     "ppi": 50,
 }
 
-# Only Yelp needs a positive ridge (its covariances are singular);
-# other datasets use lambda = 0.
+# Yelp and PPI need a positive ridge — their raw feature covariance
+# X_train^T X_train is rank-deficient, so plain Cholesky fails at lambda = 0.
 DEFAULT_LAM = {
     "ogbn-arxiv": 0.0,
     "reddit": 0.0,
     "yelp": 1e-2,
     "ogbn-products": 0.0,
-    "ppi": 0.0,
+    "ppi": 1e-2,
 }
