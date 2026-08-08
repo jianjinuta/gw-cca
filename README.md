@@ -44,8 +44,11 @@ python run.py --dataset ogbn-products    # d=100, λ=0
 python run.py --dataset ppi              # d=50,  λ=0
 ```
 
-Add `--swap` to get the GW-CCA(swap) variant (§4.3). GW-CCA is **deterministic**:
-the same command yields bit-identical output every run.
+Add `--swap` to get the GW-CCA(swap) variant (§4.3), or `--center` for the
+training-subgraph feature-centring ablation. GW-CCA has no random seed, no
+data augmentation, and no variance to report — the same command yields
+reproducible output up to BLAS/LAPACK non-determinism, sparse-multiplication
+ordering, and sign ambiguities in singular vectors.
 
 Expected output on `ogbn-arxiv`:
 

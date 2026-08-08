@@ -1,8 +1,7 @@
 """GW-CCA: Graph-Weighted Canonical Correlation Analysis.
 
 Closed-form, training-free inductive attributed graph embedding.
-Implements Algorithm 1 of the paper (Cholesky + truncated SVD form) plus
-the CCA* ablation (M = I).
+Implements Algorithm 1 of the paper (Cholesky + truncated SVD form).
 """
 from __future__ import annotations
 
@@ -57,7 +56,8 @@ def gcca_train(
     K: int = 3,
     lam: float = 0.0,
     swap: bool = False,
-) -> tuple[np.ndarray, np.ndarray]:
+    center: bool = False,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray | None, np.ndarray | None]:
     """Learn projections (W_tilde, H_tilde) using only the training subgraph.
 
     Follows Algorithm 1 of the paper line by line:
@@ -69,12 +69,28 @@ def gcca_train(
         Line 5: Cholesky factorise C_kk = L_k L_k^T
         Line 6: U, Sigma, V = TruncatedSVD(C_11^{-1/2} T C_22^{-1/2}, rank=d)
         Line 7: W_tilde = C_11^{-1/2} U;  H_tilde = C_22^{-1/2} V
+
+    If ``center=True``, column-centre X and X_2 using training-subgraph means
+    (mu_1 = mean(X_train), mu_2 = mean(P_hat^K X_train)) before Line 4. The
+    means are returned so that inductive inference can subtract the *training*
+    statistics from the full-graph features (no test leakage). Returns
+    (W_tilde, H_tilde, mu_1, mu_2); mu_1/mu_2 are ``None`` when centre=False.
     """
     from scipy.linalg import cholesky, solve_triangular
 
     # Line 2
     X1 = X_train.astype(np.float64)
     X2 = _propagate(A_train, X1, K)
+
+    if center:
+        mu1 = X1.mean(axis=0, keepdims=True)
+        mu2 = X2.mean(axis=0, keepdims=True)
+        X1 = X1 - mu1
+        X2 = X2 - mu2
+    else:
+        mu1 = None
+        mu2 = None
+
     if swap:
         X1, X2 = X2, X1
 
@@ -104,7 +120,7 @@ def gcca_train(
     # Line 7: W_tilde = L_1^{-T} U;  H_tilde = L_2^{-T} V
     W = solve_triangular(L1.T, U, lower=False)
     H = solve_triangular(L2.T, V, lower=False)
-    return W, H
+    return W, H, mu1, mu2
 
 
 # ----------------------------------------------------------------------
@@ -119,6 +135,8 @@ def gcca_embed(
     K: int = 3,
     swap: bool = False,
     l2_normalize: bool = True,
+    mu1: np.ndarray | None = None,
+    mu2: np.ndarray | None = None,
 ) -> np.ndarray:
     """Apply learned projections to any graph (Algorithm 1 inductive-inference phase).
 
@@ -128,9 +146,18 @@ def gcca_embed(
         Line 11: Z' = [Z_1' | Z_2']
 
     l2_normalize=True (default) realises the unit-norm constraint from Eq. gcca-rep.
+
+    mu1/mu2: optional training-subgraph column means (as returned by
+    gcca_train(..., center=True)). When provided, they are subtracted from
+    X' and X_2' respectively before applying the projections, so inductive
+    inference uses *training* statistics — no test-node features enter mu.
     """
     X1 = X_full.astype(np.float64)
     X2 = _propagate(A, X1, K)
+    if mu1 is not None:
+        X1 = X1 - mu1
+    if mu2 is not None:
+        X2 = X2 - mu2
     if swap:
         X1, X2 = X2, X1
     Z1 = (X1 @ W).astype(np.float32)
