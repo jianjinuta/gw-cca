@@ -81,5 +81,5 @@ All baselines are trained on the training-node-induced subgraph (`A_train`) only
 the frozen encoder is applied to the full graph `A_full`. Baselines use their
 official default hyperparameters, mini-batched with the neighbourhood-subsampling
 scheme of Hamilton et al. 2017 when the full adjacency exceeds GPU memory.
-Multi-seed variance (4 seeds per method × dataset) is reported as mean ± std in
+Multi-seed variance (5 seeds per method × dataset) is reported as mean ± std in
 the paper's tables.
