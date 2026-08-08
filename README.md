@@ -13,7 +13,7 @@ removed.
 
 ```
 gw_cca.py            Algorithm 1: gw_cca_train (Cholesky + truncated SVD)
-                                gw_cca_embed (inductive inference with L2 rows)
+                                gw_cca_embed (inductive inference)
 data.py            Strict-inductive dataset loaders + train/test edge splits
 probe.py           Downstream evaluation (torch LBFGS LR probe + link-pred LR)
 run.py             CLI entry: python run.py --dataset <name>
