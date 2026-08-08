@@ -24,7 +24,6 @@ def main():
     ap.add_argument("--d", type=int, default=None, help="Embedding dim (default from paper §5.3)")
     ap.add_argument("--K", type=int, default=3, help="Propagation depth")
     ap.add_argument("--lam", type=float, default=None, help="Ridge (default from paper §5.3)")
-    ap.add_argument("--no-l2", action="store_true", help="Disable inference-time L2 normalisation")
     ap.add_argument("--center", action="store_true",
                     help="Column-centre X and X_2 using training-subgraph means (§ ablation)")
     args = ap.parse_args()
@@ -49,11 +48,9 @@ def main():
 
     print("Inductive inference: full-graph embedding + link-prediction-graph embedding...", flush=True)
     Z_nc = gcca_embed(ds["X_full"], ds["A_full"], W, H,
-                      K=args.K, swap=swap, l2_normalize=not args.no_l2,
-                      mu1=mu1, mu2=mu2)
+                      K=args.K, swap=swap, mu1=mu1, mu2=mu2)
     Z_lp = gcca_embed(ds["X_full"], ds["A_lp"], W, H,
-                      K=args.K, swap=swap, l2_normalize=not args.no_l2,
-                      mu1=mu1, mu2=mu2)
+                      K=args.K, swap=swap, mu1=mu1, mu2=mu2)
 
     print("Evaluating...", flush=True)
     nc = eval_node_cls(Z_nc, ds["y"], ds["train"], ds["val"], ds["test"], ds["num_classes"])
