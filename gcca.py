@@ -39,7 +39,7 @@ def _propagate(A: sp.spmatrix, X: np.ndarray, K: int) -> np.ndarray:
 
 
 def _l2_rows(A: np.ndarray) -> np.ndarray:
-    """L2-normalise each row (Algorithm 1, line 10)."""
+    """L2-normalise each row (post-projection, outside Algorithm 1)."""
     n = np.linalg.norm(A, axis=1, keepdims=True)
     n[n < 1e-12] = 1.0
     return A / n
@@ -124,7 +124,7 @@ def gcca_train(
 
 
 # ----------------------------------------------------------------------
-# Algorithm 1 — Inductive Inference (lines 8–11)
+# Algorithm 1 — Inductive Inference (lines 8–10)
 # ----------------------------------------------------------------------
 
 def gcca_embed(
@@ -142,10 +142,10 @@ def gcca_embed(
 
         Line 8:  P_hat' = (D' + I)^{-1} (A' + I)
         Line 9:  X_2' = P_hat'^K X'
-        Line 10: Z_1' = L2Rows(X' W_tilde);  Z_2' = L2Rows(X_2' H_tilde)
-        Line 11: Z' = [Z_1' | Z_2']
+        Line 10: Z' = [X' W_tilde | X_2' H_tilde]
 
-    l2_normalize=True (default) realises the unit-norm constraint from Eq. gcca-rep.
+    l2_normalize (default True) L2-normalises rows of each view before
+    concatenation — an implementation choice not part of Algorithm 1.
 
     mu1/mu2: optional training-subgraph column means (as returned by
     gcca_train(..., center=True)). When provided, they are subtracted from
