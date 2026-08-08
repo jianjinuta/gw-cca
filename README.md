@@ -41,7 +41,7 @@ python run.py --dataset ogbn-arxiv       # d=120, λ=0
 python run.py --dataset reddit           # d=120, λ=0
 python run.py --dataset yelp             # d=300, λ=0.01
 python run.py --dataset ogbn-products    # d=100, λ=0
-python run.py --dataset ppi              # d=50,  λ=0
+python run.py --dataset ppi              # d=50,  λ=0.01
 ```
 
 Add `--swap` to get the GW-CCA(swap) variant (§4.3), or `--center` for the
