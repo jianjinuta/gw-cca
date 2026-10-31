@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GW-CCA Poster — LoG 2026</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600;700&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-body: #374151;
+      --header-bg: #1a3a52;
+      --header-text: #ffffff;
+      --accent: #0892a5;
+      --section-bg: #f9fafb;
+      --border: #e5e7eb;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-body);
+      line-height: 1.5;
+      padding: 0;
+      margin: 0;
+    }
+
+    .poster {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 2 / 3;
+      margin: 0 auto;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+      gap: 30px;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 20px;
+    }
+
+    .title {
+      font-family: 'Lora', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--header-bg);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-body);
+      margin-bottom: 15px;
+    }
+
+    .authors {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      margin-bottom: 8px;
+    }
+
+    .authors strong {
+      font-weight: 600;
+    }
+
+    .affiliations {
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* Three-column content */
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 25px;
+      flex: 1;
+    }
+
+    .section {
+      background: var(--section-bg);
+      padding: 20px;
+      border-radius: 6px;
+      border-left: 4px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--header-bg);
+      margin-bottom: 8px;
+    }
+
+    .section p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .section ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.9rem;
+    }
+
+    .section li {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .section li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Key insight box */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(8, 146, 165, 0.05), rgba(26, 58, 82, 0.05));
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+
+    .highlight-box .label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .highlight-box p {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    /* Results / Key metrics */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .metric {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-top: 4px;
+    }
+
+    /* Figure placeholder */
+    .figure-placeholder {
+      background: #f0f9fa;
+      border: 2px dashed var(--accent);
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.9rem;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 12px 0;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 2px solid var(--border);
+      padding-top: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      font-size: 0.85rem;
+    }
+
+    .footer-section h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--header-bg);
+      margin-bottom: 8px;
+    }
+
+    .footer-section p {
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section li {
+      margin-bottom: 4px;
+      color: var(--text-body);
+    }
+
+    .qr-placeholder {
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-size: 0.75rem;
+    }
+
+    /* Print styles */
+    @media print {
+      .poster {
+        max-width: 100%;
+        padding: 0;
+        box-shadow: none;
+        aspect-ratio: auto;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --text-dark: #f8fafc;
+        --text-body: #cbd5e1;
+        --header-bg: #e0f2fe;
+        --header-text: #0f172a;
+        --accent: #06b6d4;
+        --section-bg: #1e293b;
+        --border: #334155;
+      }
+      .title {
+        color: var(--header-bg);
+      }
+      .section {
+        background: var(--section-bg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <!-- Header -->
+    <div class="header">
+      <h1 class="title">Graph-Weighted CCA</h1>
+      <p class="subtitle">A Closed-Form Method for Inductive Attributed Graph Embedding</p>
+      <p class="authors"><strong>Jianjin Deng</strong> · <strong>Di Ming</strong></p>
+      <p class="affiliations">Independent Researcher &nbsp; | &nbsp; Chongqing University of Technology</p>
+    </div>
+
+    <!-- Three-column content -->
+    <div class="content">
+      <!-- Problem / Motivation -->
+      <div class="section">
+        <h2 class="section-title">Problem</h2>
+        <p><strong>Inductive graph embedding</strong> must generalize to unseen nodes without learning per-node embeddings or retraining.</p>
+        <ul>
+          <li>Classical methods (DeepWalk, node2vec) are transductive</li>
+          <li>Deep SSL methods require GPU training, augmentation, hyperparameter tuning</li>
+          <li>Linear methods (SGC) ignore graph structure in alignment</li>
+        </ul>
+        <div class="highlight-box">
+          <div class="label">Research Question</div>
+          <p>Can inductive attributed graph embeddings be learned with a simpler, closed-form method while exploiting graph structure?</p>
+        </div>
+      </div>
+
+      <!-- Method -->
+      <div class="section">
+        <h2 class="section-title">Method</h2>
+        <p><strong>Graph-Weighted CCA</strong> inserts graph similarity into the cross-covariance:</p>
+        <div class="figure-placeholder" style="background: #fafafa; border: 1px solid #e5e7eb;">
+          Tr(W<sup>⊤</sup> X₁<sup>⊤</sup> <span style="color: var(--accent); font-weight: bold;">M</span> X₂ H)
+        </div>
+        <ul>
+          <li><strong>M</strong> = graph proximity (random-walk)</li>
+          <li><strong>X₂</strong> = propagated features (P^K X)</li>
+          <li>Closed-form: single p×p SVD</li>
+          <li>Deterministic, inductive by construction</li>
+        </ul>
+        <p style="margin-top: 12px; font-size: 0.85rem; color: #6b7280;"><strong>Complexity:</strong> O(K|E|p + np² + p³)</p>
+      </div>
+
+      <!-- Results -->
+      <div class="section">
+        <h2 class="section-title">Results</h2>
+        <p><strong>5 inductive benchmarks</strong> under strict protocol:</p>
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-value">3/5</div>
+            <div class="metric-label">Node Classif.</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">5/5</div>
+            <div class="metric-label">Link Predict.</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">1000×</div>
+            <div class="metric-label">Faster</div>
+          </div>
+        </div>
+        <div class="figure-placeholder" style="margin-top: 12px;">
+          [Table: Node Classification Accuracy %]<br>
+          Yelp: +4.0pp vs GraphMAE2<br>
+          Reddit: 96.3% (best)
+        </div>
+        <div class="figure-placeholder">
+          [Table: Link Prediction AUC %]<br>
+          Leads all 5 datasets<br>
+          PPI: +15.5pp vs CCA*
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Insight -->
+    <div class="highlight-box">
+      <div class="label">Core Innovation</div>
+      <p>Replacing ordinary cross-covariance X₁⊤X₂ with graph-weighted cross-covariance X₁⊤MX₂ aligns not just same-node pairs but cross-node pairs (i,j) weighted by graph proximity—structurally similar nodes pull together across views without iterative training.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-section">
+        <h4>Key Contributions</h4>
+        <ul>
+          <li>Graph-weighted objective in cross-covariance</li>
+          <li>Closed-form solver via truncated SVD</li>
+          <li>Empirical validation on 5 benchmarks</li>
+          <li>Strict inductive protocol with re-run baselines</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Datasets</h4>
+        <ul>
+          <li>ogbn-arxiv</li>
+          <li>Reddit</li>
+          <li>Yelp</li>
+          <li>ogbn-products</li>
+          <li>PPI</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Code & Contact</h4>
+        <p style="font-size: 0.8rem;">github.com/jianjinuta/gw-cca</p>
+        <p style="margin-top: 12px; font-size: 0.75rem; color: #6b7280;">LoG 2026 • Boston, MA • Nov 20–22</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
