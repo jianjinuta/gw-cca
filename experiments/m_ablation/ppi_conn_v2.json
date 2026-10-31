@@ -1,0 +1,29 @@
+[
+  {
+    "condition": "features_only",
+    "nnz_masked": 0,
+    "embed_s": 0.04813051223754883,
+    "nc_val": 0.43933101165140376,
+    "nc_test": 0.4424713207471621,
+    "nc_metric": "micro-f1",
+    "dataset": "ppi"
+  },
+  {
+    "condition": "test_test",
+    "nnz_masked": 161976,
+    "embed_s": 0.0637047290802002,
+    "nc_val": 0.5428309379136398,
+    "nc_test": 0.5526947245880998,
+    "nc_metric": "micro-f1",
+    "dataset": "ppi"
+  },
+  {
+    "condition": "full",
+    "nnz_masked": 1587264,
+    "embed_s": 0.16956424713134766,
+    "nc_val": 0.5428309379136398,
+    "nc_test": 0.5526947245880998,
+    "nc_metric": "micro-f1",
+    "dataset": "ppi"
+  }
+]

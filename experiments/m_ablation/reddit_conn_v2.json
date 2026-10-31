@@ -1,0 +1,29 @@
+[
+  {
+    "condition": "features_only",
+    "nnz_masked": 0,
+    "embed_s": 2.8130784034729004,
+    "nc_val": 0.6893117853073969,
+    "nc_test": 0.6820941916362453,
+    "nc_metric": "accuracy",
+    "dataset": "reddit"
+  },
+  {
+    "condition": "test_test",
+    "nnz_masked": 1615610,
+    "embed_s": 5.669153451919556,
+    "nc_val": 0.9623190851934681,
+    "nc_test": 0.9331875519572054,
+    "nc_metric": "accuracy",
+    "dataset": "reddit"
+  },
+  {
+    "condition": "full",
+    "nnz_masked": 23213838,
+    "embed_s": 43.818193197250366,
+    "nc_val": 0.9623190851934681,
+    "nc_test": 0.9625365959446271,
+    "nc_metric": "accuracy",
+    "dataset": "reddit"
+  }
+]

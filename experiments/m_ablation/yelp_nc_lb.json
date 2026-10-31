@@ -1,0 +1,26 @@
+[
+  {
+    "method": "sgc",
+    "embed_s": 20.351278066635132,
+    "nc_val": 0.2314056785247964,
+    "nc_test": 0.23023719921751254,
+    "nc_metric": "micro-f1",
+    "dataset": "yelp"
+  },
+  {
+    "method": "appnp",
+    "embed_s": 72.20424771308899,
+    "nc_val": 0.35055158444014256,
+    "nc_test": 0.3495771840999677,
+    "nc_metric": "micro-f1",
+    "dataset": "yelp"
+  },
+  {
+    "method": "chebnet",
+    "embed_s": 23.45145606994629,
+    "nc_val": 0.35645324021896935,
+    "nc_test": 0.355130275761524,
+    "nc_metric": "micro-f1",
+    "dataset": "yelp"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "method": "sgc",
+    "embed_s": 1.713491439819336,
+    "nc_val": 0.711768851303735,
+    "nc_test": 0.7012118593502459,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-arxiv"
+  },
+  {
+    "method": "appnp",
+    "embed_s": 6.026008605957031,
+    "nc_val": 0.7106614315916642,
+    "nc_test": 0.6961710182499022,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-arxiv"
+  },
+  {
+    "method": "chebnet",
+    "embed_s": 2.0445334911346436,
+    "nc_val": 0.7000906070673513,
+    "nc_test": 0.6887434932000083,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-arxiv"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "method": "sgc",
+    "embed_s": 92.64821171760559,
+    "nc_val": 0.8850545482287719,
+    "nc_test": 0.7221117432586369,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-products"
+  },
+  {
+    "method": "appnp",
+    "embed_s": 313.27495312690735,
+    "nc_val": 0.8843424967576228,
+    "nc_test": 0.7129363410722831,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-products"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "method": "sgc",
+    "embed_s": 43.45361638069153,
+    "nc_val": 0.9162411916114604,
+    "nc_test": 0.9142299490367586,
+    "nc_metric": "accuracy",
+    "dataset": "reddit"
+  },
+  {
+    "method": "appnp",
+    "embed_s": 153.73939061164856,
+    "nc_val": 0.9142157896957678,
+    "nc_test": 0.9064589583258033,
+    "nc_metric": "accuracy",
+    "dataset": "reddit"
+  },
+  {
+    "method": "chebnet",
+    "embed_s": 45.26401948928833,
+    "nc_val": 0.942022870163298,
+    "nc_test": 0.9418802183106227,
+    "nc_metric": "accuracy",
+    "dataset": "reddit"
+  }
+]

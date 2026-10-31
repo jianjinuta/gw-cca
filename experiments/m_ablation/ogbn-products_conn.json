@@ -1,0 +1,29 @@
+[
+  {
+    "condition": "features_only",
+    "nnz_masked": 0,
+    "embed_s": 7.7297093868255615,
+    "nc_val": 0.8879536149327366,
+    "nc_test": 0.3897806280898526,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-products"
+  },
+  {
+    "condition": "test_test",
+    "nnz_masked": 62425784,
+    "embed_s": 52.468932151794434,
+    "nc_val": 0.8879536149327366,
+    "nc_test": 0.6907519844416701,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-products"
+  },
+  {
+    "condition": "full",
+    "nnz_masked": 123718024,
+    "embed_s": 94.40243911743164,
+    "nc_val": 0.8879536149327366,
+    "nc_test": 0.729016565518544,
+    "nc_metric": "accuracy",
+    "dataset": "ogbn-products"
+  }
+]

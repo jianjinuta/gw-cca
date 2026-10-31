@@ -1,0 +1,29 @@
+[
+  {
+    "condition": "features_only",
+    "nnz_masked": 0,
+    "embed_s": 6.022343397140503,
+    "nc_val": 0.6103665765865225,
+    "nc_test": 0.6048966504229996,
+    "nc_metric": "micro-f1",
+    "dataset": "yelp"
+  },
+  {
+    "condition": "test_test",
+    "nnz_masked": 137046,
+    "embed_s": 6.251947641372681,
+    "nc_val": 0.6103665765865225,
+    "nc_test": 0.6053699894428664,
+    "nc_metric": "micro-f1",
+    "dataset": "yelp"
+  },
+  {
+    "condition": "full",
+    "nnz_masked": 13237972,
+    "embed_s": 21.46527075767517,
+    "nc_val": 0.6103665765865225,
+    "nc_test": 0.6109382091389901,
+    "nc_metric": "micro-f1",
+    "dataset": "yelp"
+  }
+]
