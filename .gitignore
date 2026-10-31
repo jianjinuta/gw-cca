@@ -5,11 +5,3 @@ __pycache__/
 *.aux
 *.out
 *.pdf
-*.blg
-*.brf
-*.fls
-*.fdb_latexmk
-*.synctex.gz
-
-# paper PDFs are tracked on purpose
-!paper/**/*.pdf
